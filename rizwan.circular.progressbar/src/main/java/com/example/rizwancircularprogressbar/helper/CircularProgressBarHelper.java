@@ -12,7 +12,6 @@ import com.example.rizwancircularprogressbar.R;
 
 /**
  * Created by Abdul Rizwan on 24-09-2018.
- *
  */
 public class CircularProgressBarHelper {
     TextView progressText;
@@ -23,6 +22,7 @@ public class CircularProgressBarHelper {
     int PROGRESS_MAX = 30;
     int COUNT = 0;
     int lastMax = 0;
+    boolean isRunning;
 
     public CircularProgressBarHelper(Context context, int progressMax, ViewGroup viewGroup) {
         if (progressMax != 0)
@@ -39,11 +39,12 @@ public class CircularProgressBarHelper {
     }
 
 
-    public void start() {
+    private void start() {
         if (COUNT == 0) {
             stopProgressBar();
             return;
         }
+        isRunning = true;
         countDownTimer = new CountDownTimer(PROGRESS_MAX * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -72,8 +73,10 @@ public class CircularProgressBarHelper {
     }
 
     public void stopProgressBar() {
-        if (countDownTimer != null)
+        if (countDownTimer != null) {
+            isRunning = false;
             countDownTimer.cancel();
+        }
     }
 
 
@@ -88,5 +91,9 @@ public class CircularProgressBarHelper {
 
     public void resumeProgressBar() {
         start();
+    }
+
+    public boolean isRunning() {
+        return isRunning;
     }
 }
