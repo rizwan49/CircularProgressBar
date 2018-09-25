@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="def_progress_end_color">#FF0000</color>
+    <color name="def_progress_start_color">#ADFF2F</color>
+</resources>
